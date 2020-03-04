@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: collabora
+  name: collabora
+spec:
+  selector:
+    matchLabels:
+      component: collabora
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: collabora
+    spec:
+      containers:
+        - image: collabora/code
+          name: collabora
+          ports:
+            - containerPort: 9980
+      restartPolicy: Always

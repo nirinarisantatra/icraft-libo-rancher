@@ -1,0 +1,39 @@
+namespace: nextcloud
+namePrefix: nextcloud-
+
+commonLabels:
+  app: nextcloud
+  version: "18"
+
+bases:
+  - redis
+  - mariadb
+  - nextcloud
+  - cron
+  - haproxy
+  - collabora
+
+patchesStrategicMerge:
+  - patch.yaml
+
+vars:
+  - name: DB_SERVICE
+    objref:
+      apiVersion: v1
+      kind: Service
+      name: db
+  - name: REDIS_SERVICE
+    objref:
+      apiVersion: v1
+      kind: Service
+      name: redis
+  - name: HAPROXY_SERVICE
+    objref:
+      apiVersion: v1
+      kind: Service
+      name: haproxy
+  - name: COLLABORA_SERVICE
+    objref:
+      apiVersion: v1
+      kind: Service
+      name: collabora

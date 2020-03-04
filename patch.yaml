@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          env:
+            - name: MYSQL_HOST
+              value: $(DB_SERVICE)
+            - name: REDIS_HOST
+              value: $(REDIS_SERVICE)
+            - name: HAPROXY_HOST
+              value: $(HAPROXY_SERVICE)
+            - name: COLLABORA_HOST
+              value: $(COLLABORA_SERVICE)

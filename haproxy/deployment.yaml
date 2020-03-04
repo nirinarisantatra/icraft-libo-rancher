@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: haproxy
+  name: haproxy
+spec:
+  selector:
+    matchLabels:
+      component: haproxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: haproxy
+    spec:
+      containers:
+        - image: haproxytech/haproxy-debian:1.8
+          name: haproxy
+          ports:
+            - containerPort: 9980
+      restartPolicy: Always
